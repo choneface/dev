@@ -17,6 +17,20 @@ for script in "$SCRIPT_DIR/scripts/"*; do
     fi
 done
 
+# Symlink tmux config
+echo ""
+echo "Linking tmux config to ~/.tmux.conf..."
+if [[ -e ~/.tmux.conf ]]; then
+    if [[ -L ~/.tmux.conf ]]; then
+        rm ~/.tmux.conf
+    else
+        echo "  Backing up existing tmux config to ~/.tmux.conf.bak"
+        mv ~/.tmux.conf ~/.tmux.conf.bak
+    fi
+fi
+ln -s "$SCRIPT_DIR/tmux.conf" ~/.tmux.conf
+echo "  -> Linked"
+
 # Symlink nvim config
 echo ""
 echo "Linking nvim config to ~/.config/nvim..."

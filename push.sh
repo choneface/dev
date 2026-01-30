@@ -17,5 +17,19 @@ for script in "$SCRIPT_DIR/scripts/"*; do
     fi
 done
 
+# Symlink nvim config
+echo ""
+echo "Linking nvim config to ~/.config/nvim..."
+if [[ -e ~/.config/nvim ]]; then
+    if [[ -L ~/.config/nvim ]]; then
+        rm ~/.config/nvim
+    else
+        echo "  Backing up existing nvim config to ~/.config/nvim.bak"
+        mv ~/.config/nvim ~/.config/nvim.bak
+    fi
+fi
+ln -s "$SCRIPT_DIR/nvim" ~/.config/nvim
+echo "  -> Linked"
+
 echo ""
 echo "Done!"

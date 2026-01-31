@@ -45,5 +45,18 @@ fi
 ln -s "$SCRIPT_DIR/nvim" ~/.config/nvim
 echo "  -> Linked"
 
+# Add zsh config source line to ~/.zshrc if not present
+echo ""
+echo "Configuring zsh..."
+ZSH_SOURCE_LINE="source $SCRIPT_DIR/zsh/config.zsh"
+if ! grep -qF "$ZSH_SOURCE_LINE" ~/.zshrc 2>/dev/null; then
+    echo "" >> ~/.zshrc
+    echo "# Custom dev environment config" >> ~/.zshrc
+    echo "$ZSH_SOURCE_LINE" >> ~/.zshrc
+    echo "  -> Added source line to ~/.zshrc"
+else
+    echo "  -> Source line already present in ~/.zshrc"
+fi
+
 echo ""
 echo "Done!"

@@ -10,4 +10,4 @@ f() {
     cd ~/Desktop/repos/$1
 }
 
-bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s '^f' 'tmux-sessionizer\n'
